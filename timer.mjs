@@ -15,19 +15,27 @@ updateTime();
 setInterval(updateTime, 1000);
 */
 
-let sessionSeconds = null;
-let endSeconds = null;
+export function timer(sessionSeconds){  
+    this.sessionSeconds = sessionSeconds;  
+    this.endSeconds = new Date().setSeconds(new Date().getSeconds() + this.sessionSeconds);  
+    
+    //countdown function to start the count down process
+    this.countdown = countdown;
+    function countdown(){  
+        console.log("in countdown")
+        const now = new Date().getTime();
+        const end = new Date(this.endSeconds).getTime();
+        const duration = Math.ceil((end - now) / 1000);
 
-export const sessionTime = (seconds) => {
-    sessionSeconds = seconds;
-    endSeconds = new Date().setSeconds(new Date().getSeconds() + sessionSeconds);
-}
+        if (duration == 0) {
+            console.log(-duration);
+            console.log("Current session ended");
+        }
+        else{
+            console.log(duration);
+        }
 
-export const countdown = () => {
-    const now = new Date().getTime();
-    const end = new Date(endSeconds).getTime();
-    const duration = Math.ceil((end - now) / 1000);
-    console.log(duration);
-    return duration;
-}
-
+        return duration;
+    }
+    
+}  

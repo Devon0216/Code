@@ -1,8 +1,16 @@
-import { countdown } from './timer.mjs';
-import { sessionTime } from './timer.mjs';
+import { workshop } from './workshop.mjs';
 
-let seconds = 57;
-sessionTime(seconds);
+/**
+    *******************************************************************
+    count down loop
+    *******************************************************************
+**/
 
-console.log(countdown());
-setInterval(countdown, 1000);
+let numSessions = 2;
+let numParticipants = 2;
+
+let theWorkshop = new workshop(numSessions,numParticipants);
+theWorkshop.addSessions("start",5);
+theWorkshop.addSessions("end",10);
+
+theWorkshop.startWorkshop(0);
